@@ -88,9 +88,9 @@ def getClosestNb(avg):
     return posRet,posDist,negRet,negDist
 
 # read the image with mahotas as a grey image
-img=m.imread('./testimg4.jpg',as_grey=True)
+img=m.imread('./BadRG.jpg',as_grey=True)
 # read the image with mahotas again to obtain a color image where we can draw the ReebGraph in red (vertices) and green (edges)
-imgColor2=m.imread('./testimg4.jpg')
+imgColor2=m.imread('./BadRG.jpg')
 # Threshhold to remove artifacts from the jpg compression
 img=(img>100)
 #get the dimensions of the image
@@ -136,7 +136,7 @@ for idx,i in enumerate(img):
                 #Note: we use idx-2 in the condition below to compensate for little errors resulting from the thresholding of the jpg image. 
                 # Theorethically 1 would be enough
                 if posDist >1 and posIdx>=0:
-                        if np.unique(img[idx-2,avg:avg+int(posDist)-1])[0]==True: 
+                        if np.unique(img[idx+2,avg:avg+int(posDist)-1])[0]==True or np.unique(img[idx-2,avg:avg+int(posDist)-1])[0]==True: 
                             for l in range(0,int(posDist)):
                                 if idx-l > 0 and idx+l < y:
                                     imgColor2[idx,avg+l]  =(1,255,1)
@@ -145,7 +145,7 @@ for idx,i in enumerate(img):
                                     imgColor2[idx,avg+l+1]=(1,255,1)
                                     imgColor2[idx,avg+l-1]=(1,255,1)
                 if negDist <-1 and negIdx>=0:
-                        if np.unique(img[idx-2,avg+int(negDist)+1:avg])[0]==True:
+                        if np.unique(img[idx-2,avg+int(negDist)+1:avg])[0]==True or np.unique(img[idx+2,avg+int(negDist)+1:avg])[0]==True:
                             for l in range(int(negDist),0):
                                     if idx-l > 0 and idx+l < y:
                                         imgColor2[idx,avg+l]  =(1,255,1)
