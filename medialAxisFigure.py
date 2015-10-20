@@ -1,7 +1,7 @@
 '''
 -------------------------------------------------------------------------------------------
 REEB GRAPH DEMO
-This demo belongs to the paper 'A practial intorduction to skeletons for the plant sciences'
+This demo belongs to the paper 'A practial introduction to skeletons for the plant sciences'
 
 The demo uses:
 - the mahotas package (http://luispedro.org/software/mahotas)
